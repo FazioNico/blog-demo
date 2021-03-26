@@ -1,0 +1,26 @@
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { ListComponent } from './list.component';
+
+const routes: Routes = [
+  {
+    path: '',
+    children: [
+      {
+        path: '',
+        component: ListComponent,
+      },
+      {
+        path: ':id',
+        loadChildren: () => import('../item/item.module')
+                            .then(m => m.ItemModule)
+      }
+    ]
+  }
+];
+
+@NgModule({
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule]
+})
+export class ListRoutingModule { }

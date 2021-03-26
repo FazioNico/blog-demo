@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>MyBlog</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+
+  <!-- post item -->
+  <ion-card [routerLink]="post.id" *ngFor="let post of posts$|async">
+    <ion-card-header>
+      <ion-text color="primary">
+        <h2>{{post.title}}</h2>
+      </ion-text>
+    </ion-card-header>
+    <ion-card-content>
+      {{post.body}}
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

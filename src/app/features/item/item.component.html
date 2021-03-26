@@ -1,0 +1,65 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{(post$|async)?.title}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-grid *ngIf="post$|async as post">
+    <!-- header post -->
+    <ion-row>
+      <ion-col size="12">
+        <ion-text color="primary">
+          <h1>{{post.title}}</h1>
+        </ion-text>
+      </ion-col>
+      <ion-col size="12">
+        <ion-text color="medium">
+          <p class="ion-no-margin">
+            <small>Publié par {{(user$|async)?.name}}</small>
+          </p>
+        </ion-text>
+      </ion-col>
+    </ion-row>
+
+    <!-- content post -->
+    <ion-row>
+      <ion-col>
+        <ion-text>
+          <p>
+            {{post.body}}
+          </p>
+        </ion-text>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <!-- comment post -->
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-text color="primary">
+          <h2>
+            Comments
+          </h2>
+        </ion-text>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="comments$|async as comments">
+      <ion-col size="12" *ngFor="let comment of comments">
+        <ion-card  class="ion-no-margin ion-margin-bottom">
+          <ion-card-content>
+            <ion-text color="medium">
+              <p>{{comment.email}}</p>
+            </ion-text>
+            <ion-text color="dark">
+              <p>{{comment.body}}</p>
+            </ion-text>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
