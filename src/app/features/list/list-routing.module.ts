@@ -5,17 +5,12 @@ import { ListComponent } from './list.component';
 const routes: Routes = [
   {
     path: '',
-    children: [
-      {
-        path: '',
-        component: ListComponent,
-      },
-      {
-        path: ':id',
-        loadChildren: () => import('../item/item.module')
-                            .then(m => m.ItemModule)
-      }
-    ]
+    component: ListComponent,
+  },
+  {
+    path: ':id',
+    loadChildren: () => import('../item/item.module')
+                        .then(m => m.ItemModule)
   }
 ];
 
